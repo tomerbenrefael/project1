@@ -1,0 +1,28 @@
+﻿@model project1.Models.EmployeeShift
+
+@{
+    ViewBag.Title = "Add shift to employee";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Add a shift to Employee </h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Choose a shift</h4>
+    @Html.Hidden("EmployeeID", Model.EmployeeID);
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShiftID, "ShiftID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ShiftID", ((List<project1.Models.Shift>)ViewData["ShiftsList"]).Select(m => new SelectListItem { Text = m.Date.Value.ToShortDateString() + " : " + m.StartTime + " - " + m.EndTime, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add shift" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

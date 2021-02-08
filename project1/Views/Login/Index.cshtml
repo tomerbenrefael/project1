@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    @model project1.Models.User
+
+}
+<style>
+
+.h2
+    {
+        font-family: Calibri, Helvetica, sans-serif;
+        background-color: pink;
+    }
+.Button
+    {
+        background-color: #4CAF50; 
+        width: 100%;
+        color: orange;
+        padding: 15px;
+        margin: 10px 0px;
+        border: solid;
+        cursor: pointer;
+    }
+</style>
+<div class="container">
+    <h2>
+        Hello,<br />
+        Please Register Here:
+    </h2>
+    <br />
+    <span style='font-size:50px;'>&#8595;</span>
+
+
+    <div class="row" style="position: absolute">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div>
+                    @Html.LabelFor(a => a.UserName)
+                    @Html.TextBoxFor(a => a.UserName)
+                    <br />
+                    @Html.ValidationMessageFor(a => a.UserName)
+                    <br />
+                    @Html.LabelFor(a => a.Password)
+                    @Html.PasswordFor(a => a.Password)
+                    <br />
+                    @Html.ValidationMessageFor(a => a.Password)
+                </div>
+                <br />
+                <div>
+                    <input type="Submit" class="Button" ; value="Login" />
+                </div>
+                <div>
+                    <span style="color:red; font-size:30px">@TempData["message"]</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

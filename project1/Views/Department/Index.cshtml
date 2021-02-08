@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<project1.Models.Department>
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1>Departments</h1>
+<div class="departments">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Manager</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manager)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit",new { depID = item.ID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { depID = item.ID })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+   
+</div>
+<div>
+    @Html.ActionLink("Create new Department","Add")
+</div>
+

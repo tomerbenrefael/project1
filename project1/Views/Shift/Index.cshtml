@@ -1,0 +1,53 @@
+﻿@model IEnumerable<project1.Models.Shift>
+@using project1.Models;
+
+@{
+    ViewBag.Title = "Shifts";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Shifts List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>Employees</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var employee in ViewBag.EmployeesByShift[item.ID])
+                    {
+                        <li>
+                         @Html.ActionLink((string)employee.FirstName+" " +(string) employee.LastName, "Edit","Employee",new { empID = (int)employee.ID },null)
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+
+</table>
