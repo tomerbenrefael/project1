@@ -2,12 +2,11 @@
 first commit
   
   
-  Login Info:
+  Login Info :
 
 
 
-username: adam1
-password: passion
+
 
 username: ChrisB
 password: thechris
